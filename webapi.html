@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Directions service</title>
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+      #panel {
+        position: absolute;
+        top: 5px;
+        left: 50%;
+        margin-left: -180px;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script>
+var directionsDisplay;
+var directionsService = new google.maps.DirectionsService();
+var map;
+
+function initialize() {
+  directionsDisplay = new google.maps.DirectionsRenderer();
+  var chicago = new google.maps.LatLng(41.850033, -87.6500523);
+  var mapOptions = {
+    zoom:7,
+    center: chicago
+  }
+  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+  directionsDisplay.setMap(map);
+}
+
+function calcRoute() {
+  var start = document.getElementById('start').value;
+  var end = document.getElementById('end').value;
+  var request = {
+      origin:start,
+      destination:end,
+      travelMode: google.maps.TravelMode.DRIVING
+  };
+  directionsService.route(request, function(response, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+      directionsDisplay.setDirections(response);
+    }
+  });
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+  </head>
+  <body>
+    <div id="panel">
+    <b>Start: </b>
+    <select id="start" onchange="calcRoute();">
+      <option value="Bhaktapur">Bhaktapur</option>
+      <option value="Kathmandu">Kathmandu</option>
+      <option value="Kavrepalanchok">Kavrepalanchok</option>
+      <option value="Lalitpur District ">Lalitpur District </option>
+      <option value=" Nuwakot"> Nuwakot</option>
+      <option value="Rasuwa">Dhunche</option>
+      <option value=" Sindhupalchok">Chautara</option>
+      <option value="Banke">Nepalgunj</option>
+      <option value=" Bardiya">Gulariya</option>
+      <option value="Dailekh ">Dullu</option>
+      <option value="Jajarkot">Khalanga</option>
+      <option value="Surkhet">Birendranagar</option>
+      <option value="Baglung">Kalika</option>
+       <option value="Mustang">Jomsom</option>
+        <option value="Myagdi">Beni</option>
+         <option value="Parbat ">Kusma</option>
+          <option value="Gorkha">Gorkha</option>
+           <option value="Kaski ">Pokhara</option>
+           <option value=" Lamjung">Besisahar</option>
+           <option value="Manang "> Chame</option>
+           <option value="Syangja ">Syangja </option>
+           <option value="Tanahu ">Damauli </option>
+           <option value="Dhanusa  "> Janakpur</option>
+           <option value="Dolakha">Charikot </option>
+           <option value="Mahottari ">Jaleshwor </option>
+           <option value="Ramechhap ">Manthali </option>
+           <option value="Sarlahi ">Malangwa </option>
+           <option value="Sindhuli ">Kamalamai </option>
+           <option value="Dolpa "> Dunai</option>
+           <option value="Humla ">Simikot </option>
+           <option value="Jumla "> Jumla Khalanga</option>
+           <option value="Kalikot ">Manma </option>
+           <option value="Mugu "> Gamgadhi</option>
+           <option value=" Bhojpur"> Bhojpur</option>
+           <option value="Dhankuta "> Dhankuta</option>
+           <option value="Morang "> Biratnagar</option>
+           <option value=" Sankhuwasabha"> Khandbari</option>
+           <option value=" Sunsari">Inaruwa </option>
+           <option value=" Terhathum">Myanglung </option>
+           <option value=" Argakhanchi"> Sandhikharka</option>
+           <option value=" Gulmi">Tamghas </option>
+           <option value="Kapilvastu ">Kapilvastu </option>
+           <option value="Nawalparasi ">parasi </option>
+           
+           <option value=" Palpa"> Tansen</option>
+           <option value=" Rupandehi">Sidharthanagar </option>
+           <option value=" Baitadi">Baitadi </option>
+           <option value="Dadeldhura ">Dadeldhura </option>
+           <option value="Darchula ">Darchula </option>
+           <option value=" Kanchanpur">Bhim Dutta </option>
+           <option value=" Ilam">Ilam </option>
+           <option value="Jhapa ">Chandragadhi </option>
+           <option value=" Panchthar">Phidim </option>
+           <option value=" Taplejung">Taplejung </option>
+           <option value=" Bara"> Kalaiya</option>
+           <option value=" Chitwan"> Bharatpur</option>
+           <option value="Makawanpur ">Hetauda </option>
+           <option value="Parsa "> Birganj</option>
+           <option value=" Rautahat">Gaur </option>
+           <option value=" Dang Deukhuri">Tribuvannagar </option>
+           <option value=" Pyuthan">Pyuthan </option>
+           <option value=" Rolpa">Liwang </option>
+           <option value=" Rukum">Musikot </option>
+           <option value="Salyan ">Salyan Khalanga </option>
+           <option value="Khotang ">Diktel </option>
+           <option value="Okhaldhunga ">Okhaldhunga </option>
+           <option value="Saptari "> Rajbiraj</option>
+           <option value=" Siraha"> Siraha</option>
+           <option value="Solukhumbhu ">Salleri </option>
+           <option value="Udayapur ">Gaighat </option>
+           <option value=" Achham"> Mangalsen</option>
+           <option value=" Bajhang">Chainpur </option>
+           <option value=" Bajura">Martadi </option>
+           <option value=" Doti"> Dipayal</option>
+           <option value=" Kailali">Dhangadhi </option>
+           
+           
+        
+    </select>
+    <b>End: </b>
+    <select id="end" onchange="calcRoute();">
+      
+            <option value=" Palpa"> Tansen</option>
+           <option value=" Rupandehi">Sidharthanagar </option>
+           <option value=" Baitadi">Baitadi </option>
+           <option value="Dadeldhura ">Dadeldhura </option>
+           <option value="Darchula ">Darchula </option>
+           <option value=" Kanchanpur">Bhim Dutta </option>
+           <option value=" Ilam">Ilam </option>
+           <option value="Jhapa ">Chandragadhi </option>
+           <option value=" Panchthar">Phidim </option>
+           <option value=" Taplejung">Taplejung </option>
+           <option value=" Bara"> Kalaiya</option>
+           <option value=" Chitwan"> Bharatpur</option>
+           <option value="Makawanpur ">Hetauda </option>
+           <option value="Parsa "> Birganj</option>
+           <option value=" Rautahat">Gaur </option>
+           <option value=" Dang Deukhuri">Tribuvannagar </option>
+           <option value=" Pyuthan">Pyuthan </option>
+           <option value=" Rolpa">Liwang </option>
+           <option value=" Rukum">Musikot </option>
+           <option value="Salyan ">Salyan Khalanga </option>
+           <option value="Khotang ">Diktel </option>
+           <option value="Okhaldhunga ">Okhaldhunga </option>
+           <option value="Saptari "> Rajbiraj</option>
+           <option value=" Siraha"> Siraha</option>
+           <option value="Solukhumbhu ">Salleri </option>
+           <option value="Udayapur ">Gaighat </option>
+           <option value=" Achham"> Mangalsen</option>
+           <option value=" Bajhang">Chainpur </option>
+           <option value=" Bajura">Martadi </option>
+           <option value=" Doti"> Dipayal</option>
+           <option value=" Kailali">Dhangadhi </option>
+           
+      <option value="Bhaktapur">Bhaktapur</option>
+      <option value="Kathmandu">Kathmandu</option>
+      <option value="Kavrepalanchok">Kavrepalanchok</option>
+      <option value="Lalitpur District ">Lalitpur District </option>
+      <option value=" Nuwakot"> Nuwakot</option>
+      <option value="Rasuwa">Dhunche</option>
+      <option value=" Sindhupalchok">Chautara</option>
+      <option value="Banke">Nepalgunj</option>
+      <option value=" Bardiya">Gulariya</option>
+      <option value="Dailekh ">Dullu</option>
+      <option value="Jajarkot">Khalanga</option>
+      <option value="Surkhet">Birendranagar</option>
+      <option value="Baglung">Kalika</option>
+       <option value="Mustang">Jomsom</option>
+        <option value="Myagdi">Beni</option>
+         <option value="Parbat ">Kusma</option>
+          <option value="Gorkha">Gorkha</option>
+           <option value="Kaski ">Pokhara</option>
+           <option value=" Lamjung">Besisahar</option>
+           <option value="Manang "> Chame</option>
+           <option value="Syangja ">Syangja </option>
+           <option value="Tanahu ">Damauli </option>
+           <option value="Dhanusa  "> Janakpur</option>
+           <option value="Dolakha">Charikot </option>
+           <option value="Mahottari ">Jaleshwor </option>
+           <option value="Ramechhap ">Manthali </option>
+           <option value="Sarlahi ">Malangwa </option>
+           <option value="Sindhuli ">Kamalamai </option>
+           <option value="Dolpa "> Dunai</option>
+           <option value="Humla ">Simikot </option>
+           <option value="Jumla "> Jumla Khalanga</option>
+           <option value="Kalikot ">Manma </option>
+           <option value="Mugu "> Gamgadhi</option>
+           <option value=" Bhojpur"> Bhojpur</option>
+           <option value="Dhankuta "> Dhankuta</option>
+           <option value="Morang "> Biratnagar</option>
+           <option value=" Sankhuwasabha"> Khandbari</option>
+           <option value=" Sunsari">Inaruwa </option>
+           <option value=" Terhathum">Myanglung </option>
+           <option value=" Argakhanchi"> Sandhikharka</option>
+           <option value=" Gulmi">Tamghas </option>
+           <option value="Kapilvastu ">Kapilvastu </option>
+           <option value="Nawalparasi ">parasi </option>
+           
+           
+    </select>
+    </div>
+    <div id="map-canvas"></div>
+  </body>
+</html>
